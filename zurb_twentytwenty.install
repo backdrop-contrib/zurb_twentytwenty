@@ -1,7 +1,13 @@
 <?php
+/**
+ * @file
+ * Install, update and uninstall functions for the zurb_twentytwenty module.
+ *
+ */
+
 
 /**
- * Implementation of hook_requirements().
+ * Implements hook_requirements().
  * @param $phase
  * @return array
  */
@@ -16,8 +22,8 @@ function zurb_twentytwenty_requirements($phase) {
       $requirements['zurb_twentytwenty'] = array(
         'title' => t('ZURB TwentyTwenty Plugin'),
         'value' => t('!msg', array(
-            '!msg' => $file_exists ? 'Installed' : 'The ' . l('ZURB TwentyTwenty', 'https://github.com/zurb/twentytwenty') . ' was not found. Please ' . l('download', 'https://github.com/zurb/twentytwenty') . ' it into the Libraries folder (sites/all/libraries/twentytwenty).',
-          )
+          '!msg' => $file_exists ? 'Installed' : 'The ' . l('ZURB TwentyTwenty', 'https://github.com/zurb/twentytwenty') . ' was not found. Please ' . l('download', 'https://github.com/zurb/twentytwenty') . ' it into the Libraries folder (sites/all/libraries/twentytwenty).',
+        )
         ),
         'severity' => $file_exists ? REQUIREMENT_OK : REQUIREMENT_ERROR,
       );
@@ -26,4 +32,25 @@ function zurb_twentytwenty_requirements($phase) {
   }
 
   return $requirements;
+}
+
+/**
+ * Implements hook_update_last_removed().
+ */
+function zurb_twentytwenty_update_last_removed() {
+  return;
+}
+
+/**
+ * Implements hook_update_N().
+ */
+function zurb_twentytwenty_update_1000() {
+  $config = config('zurb_twentytwenty.settings');
+}
+
+/**
+ * Implements hook_install().
+ */
+function zurb_twentytwenty_install() {
+  // Dynamically generated variable data was detected.
 }

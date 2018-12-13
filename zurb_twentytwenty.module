@@ -1,32 +1,32 @@
 <?php
 
 /**
- * Implementation of hook_theme().
+ * Implements hook_theme().
  */
 function zurb_twentytwenty_theme() {
   return array(
     'zurb_twentytwenty' => array(
       'variables' => array(
-        'items'   => NULL,
-        'images'  => NULL,
+        'items' => NULL,
+        'images' => NULL,
         'options' => NULL,
-        'entity'  => NULL,
+        'entity' => NULL,
       ),
-      'template'  => 'zurb-twentytwenty',
+      'template' => 'zurb-twentytwenty',
     ),
   );
 }
 
 /**
- * Implementation of hook_field_formatter_info().
+ * Implements hook_field_formatter_info().
  * @return array
  */
 function zurb_twentytwenty_field_formatter_info() {
   $formatters = array(
     'twentytwenty' => array(
-      'label'       => t('Zurb TwentyTwenty'),
+      'label' => t('Zurb TwentyTwenty'),
       'field types' => array('image'),
-      'settings'    => array(
+      'settings' => array(
         'image_style' => '',
         'default_offset_pct' => '0.5',
       ),
@@ -37,7 +37,7 @@ function zurb_twentytwenty_field_formatter_info() {
 }
 
 /**
- * Implementation of hook_field_formatter_settings_form().
+ * Implements hook_field_formatter_settings_form().
  * @param $field
  * @param $instance
  * @param $view_mode
@@ -73,7 +73,7 @@ function zurb_twentytwenty_field_formatter_settings_form($field, $instance, $vie
 }
 
 /**
- * Implementation of hook_field_formatter_settings_summary().
+ * Implements hook_field_formatter_settings_summary().
  * @param $field
  * @param $instance
  * @param $view_mode
@@ -91,7 +91,8 @@ function zurb_twentytwenty_field_formatter_settings_summary($field, $instance, $
   // their styles in code.
   if (isset($image_styles[$settings['image_style']])) {
     $summary[] = t('Image style: @value', array('@value' => $settings['image_style']));
-  } else {
+  }
+  else {
     $summary[] = t('Original image');
   }
 
@@ -107,7 +108,7 @@ function zurb_twentytwenty_field_formatter_settings_summary($field, $instance, $
 }
 
 /**
- * Implementation of hook_field_formatter_view().
+ * Implements hook_field_formatter_view().
  * @param $entity_type
  * @param $entity
  * @param $field
@@ -123,16 +124,16 @@ function zurb_twentytwenty_field_formatter_view($entity_type, $entity, $field, $
   $element = array();
 
   $twentytwenty_path = libraries_get_path('twentytwenty');
-  drupal_add_css($twentytwenty_path . '/css/twentytwenty.css', array('scope' => 'footer', 'weight' => 110));
-  drupal_add_js($twentytwenty_path . '/js/jquery.event.move.js', array('scope' => 'footer', 'weight' => 100));
-  drupal_add_js($twentytwenty_path . '/js/jquery.twentytwenty.js', array('scope' => 'footer', 'weight' => 110));
-  drupal_add_js('jQuery(window).load(function () { jQuery(".twentytwenty-container").twentytwenty({default_offset_pct: ' . $settings['default_offset_pct'] . '}); });', array('type' => 'inline', 'scope' => 'footer', 'weight' => 120));
+  backdrop_add_css($twentytwenty_path . '/css/twentytwenty.css', array('scope' => 'footer', 'weight' => 110));
+  backdrop_add_js($twentytwenty_path . '/js/jquery.event.move.js', array('scope' => 'footer', 'weight' => 100));
+  backdrop_add_js($twentytwenty_path . '/js/jquery.twentytwenty.js', array('scope' => 'footer', 'weight' => 110));
+  backdrop_add_js('jQuery(window).load(function () { jQuery(".twentytwenty-container").twentytwenty({default_offset_pct: ' . $settings['default_offset_pct'] . '}); });', array('type' => 'inline', 'scope' => 'footer', 'weight' => 120));
 
   if (count($items)) {
     foreach ($items as $item) {
       $item['path'] = $item['uri'];
 
-      if (isset($settings['image_style']) && drupal_strlen($settings['image_style'])) {
+      if (isset($settings['image_style']) && backdrop_strlen($settings['image_style'])) {
         $item['style_name'] = $settings['image_style'];
         $images[] = theme('image_style', $item);
       }
