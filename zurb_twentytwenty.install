@@ -17,12 +17,12 @@ function zurb_twentytwenty_requirements($phase) {
   switch ($phase) {
     case 'install':
     case 'runtime':
-      $file_exists = file_exists(libraries_get_path('twentytwenty') . '/js/jquery.twentytwenty.js');
+      $file_exists = file_exists(backdrop_get_path('module','zurb_twentytwenty') . '/library/js/jquery.twentytwenty.js');
 
       $requirements['zurb_twentytwenty'] = array(
         'title' => t('ZURB TwentyTwenty Plugin'),
         'value' => t('!msg', array(
-          '!msg' => $file_exists ? 'Installed' : 'The ' . l('ZURB TwentyTwenty', 'https://github.com/zurb/twentytwenty') . ' was not found. Please ' . l('download', 'https://github.com/zurb/twentytwenty') . ' it into the Libraries folder (sites/all/libraries/twentytwenty).',
+          '!msg' => $file_exists ? 'Installed' : 'The ' . l('ZURB TwentyTwenty', 'https://github.com/zurb/twentytwenty') . ' was not found.',
         )
         ),
         'severity' => $file_exists ? REQUIREMENT_OK : REQUIREMENT_ERROR,

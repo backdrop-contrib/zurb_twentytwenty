@@ -1,6 +1,19 @@
 <?php
 
 /**
+ * Implements hook_library_info().
+ */
+function zurb_twentytwenty_library_info() {
+  $libraries['zurb_twentytwenty'] = array(
+    'title' => 'ZURB TwentyTwenty',
+    'website' => 'https://github.com/zurb/twentytwenty',
+    'version' => '2018.12.12',
+  );
+
+  return $libraries;
+}
+
+/**
  * Implements hook_theme().
  */
 function zurb_twentytwenty_theme() {
@@ -123,10 +136,10 @@ function zurb_twentytwenty_field_formatter_view($entity_type, $entity, $field, $
   $images = array();
   $element = array();
 
-  $twentytwenty_path = libraries_get_path('twentytwenty');
-  backdrop_add_css($twentytwenty_path . '/css/twentytwenty.css', array('scope' => 'footer', 'weight' => 110));
-  backdrop_add_js($twentytwenty_path . '/js/jquery.event.move.js', array('scope' => 'footer', 'weight' => 100));
-  backdrop_add_js($twentytwenty_path . '/js/jquery.twentytwenty.js', array('scope' => 'footer', 'weight' => 110));
+  $twentytwenty_path = backdrop_get_path('module','zurb_twentytwenty');
+  backdrop_add_css($twentytwenty_path . '/library/css/twentytwenty.css', array('scope' => 'footer', 'weight' => 110));
+  backdrop_add_js($twentytwenty_path . '/library/js/jquery.event.move.js', array('scope' => 'footer', 'weight' => 100));
+  backdrop_add_js($twentytwenty_path . '/library/js/jquery.twentytwenty.js', array('scope' => 'footer', 'weight' => 110));
   backdrop_add_js('jQuery(window).load(function () { jQuery(".twentytwenty-container").twentytwenty({default_offset_pct: ' . $settings['default_offset_pct'] . '}); });', array('type' => 'inline', 'scope' => 'footer', 'weight' => 120));
 
   if (count($items)) {
