@@ -140,7 +140,7 @@ function zurb_twentytwenty_field_formatter_view($entity_type, $entity, $field, $
   backdrop_add_css($twentytwenty_path . '/library/css/twentytwenty.css', array('scope' => 'footer', 'weight' => 110));
   backdrop_add_js($twentytwenty_path . '/library/js/jquery.event.move.js', array('scope' => 'footer', 'weight' => 100));
   backdrop_add_js($twentytwenty_path . '/library/js/jquery.twentytwenty.js', array('scope' => 'footer', 'weight' => 110));
-  backdrop_add_js('jQuery(window).load(function () { jQuery(".twentytwenty-container").twentytwenty({default_offset_pct: ' . $settings['default_offset_pct'] . '}); });', array('type' => 'inline', 'scope' => 'footer', 'weight' => 120));
+  backdrop_add_js('jQuery(window).load(function () { jQuery(".twentytwenty-container").twentytwenty({ no_overlay: true, default_offset_pct: ' . $settings['default_offset_pct'] . '}); });', array('type' => 'inline', 'scope' => 'footer', 'weight' => 120));
 
   if (count($items)) {
     foreach ($items as $item) {
